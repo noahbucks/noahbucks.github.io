@@ -66,8 +66,21 @@ function addItemToPreview(item, type) {
 
 // Function to create the daily list as buttons
 function createDailyList() {
-    const items = [['Rice', 'side'], ['Ravioli', 'entree'], ['Beef Tips', 'entree'], ['Mashed Potatoes', 'side']]; // Modify this list as needed
-
+    const items = [
+        ['Bkfst Pizza', 'entree'],
+        ['Fried Shrimp', 'entree'],
+        ['Pizza', 'entree'],
+        ['French Toast', 'entree'],
+        ['Pancake', 'entree'],
+        ['Reuben', 'entree'],
+        ['Entree Salad       w/ Chix', 'entree'],
+        ['Chix Quesadilla', 'entree'],
+        ['coleslaw', 'side'],
+        ['carrot raisin', 'side'],
+        ['fr fries', 'side'],
+        ['sw pot fries', 'side'],
+        ['bistro chips', 'side']
+    ];
     // Clear existing buttons in both containers
     document.getElementById('entreeButtonContainer').innerHTML = '';
     document.getElementById('sideButtonContainer').innerHTML = '';
@@ -81,6 +94,23 @@ function createDailyList() {
 
 
 function downloadTicket() {
+
+    function wrapText(text) {
+        let lines = [];
+        let currentLine = text.slice(0, 19);
+    
+        for (let i = 19; i < text.length; i += 19) {
+            let segment = text.slice(i, i + 19);
+            lines.push(currentLine);
+            currentLine = segment;
+        }
+    
+        // Push the last segment
+        lines.push(currentLine);
+    
+        return lines;
+    }
+
     const preview = document.getElementById('ticketPreview');
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d');
@@ -101,10 +131,10 @@ function downloadTicket() {
 
     for (let i = 0; i < preview.childNodes.length; i++) {
         const node = preview.childNodes[i];
-        const text = node.textContent;
+        let text = node.textContent;
 
         if (node.classList.contains('entree')) {
-            if (previousType === 'side') {
+            if (previousType != null) {
                 currentHeight += 8;
                 // Add the line after each entree if the previous item was a side
                 ctx.fillStyle = '#000'; // Line color
@@ -113,16 +143,31 @@ function downloadTicket() {
                 previousType = 'entree'; // Update the previous type
             }
             currentHeight += 12;
-            ctx.font = 'bold 72px Playfair Display, serif'; // Larger font for entrees
+            ctx.font = 'bold 50px Helvetica, sans-serif'; // Larger font for entrees
             ctx.textAlign = 'left';
             ctx.fillText(text, 2, currentHeight);
-            currentHeight += 68;
+            currentHeight += 84;
         } else {
-            ctx.font = 'italic 36px Playfair Display, serif'; // Smaller font for sides
+            text = '\u2022 ' + text; 
+            ctx.font = '40px Helvetica, sans-serif'; // Smaller font for sides
             ctx.textAlign = 'right';
             ctx.fillText(text, canvas.width - 4, currentHeight);
-            currentHeight += 36;
+            currentHeight += 78;
             previousType = 'side'; // Update the previous type			
+        }
+
+        let lines = wrapText(text); // Using the wrapText function
+        let timer = 0;
+        for (let line of lines) {
+            if (timer >= 1) {
+                ctx.fillText(line, 2, currentHeight);
+                currentHeight += 84; // Increment currentHeight by your line height
+                timer = 0;
+            }
+            else {
+                timer +=1;
+            }
+    
         }
 
     }
