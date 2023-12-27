@@ -65,19 +65,14 @@ function addItemToPreview(item, type) {
 // Function to create the daily list as buttons
 function createDailyList() {
     const items = [
-        ['Bkfst Pizza', 'entree'],
-        ['Fried Shrimp', 'entree'],
-        ['Pizza', 'entree'],
-        ['French Toast', 'entree'],
-        ['Pancake', 'entree'],
-        ['Reuben', 'entree'],
-        ['Entree Salad       w/ Chix', 'entree'],
-        ['Chix Quesadilla', 'entree'],
-        ['coleslaw', 'side'],
-        ['carrot raisin', 'side'],
-        ['fr fries', 'side'],
-        ['sw pot fries', 'side'],
-        ['bistro chips', 'side']
+        [MeatLoaf', 'entree' ],
+        ['Rice', 'side' ],
+        ['Mashed', 'side' ],
+        ['Catfish', 'entree' ],
+        ['Beets', 'side' ],
+        ['Chef Special', 'entree' ],
+        ['Squash Medley', 'side' ],
+        ['Wax Beans','entree' ],
     ];
     // Clear existing buttons in both containers
     document.getElementById('entreeButtonContainer').innerHTML = '';
