@@ -72,7 +72,7 @@ function createDailyList() {
         ['Beets', 'side' ],
         ['Chef Special', 'entree' ],
         ['Squash Medley', 'side' ],
-        ['Wax Beans','entree' ],
+        ['Wax Beans','entree' ]
     ];
     // Clear existing buttons in both containers
     document.getElementById('entreeButtonContainer').innerHTML = '';
