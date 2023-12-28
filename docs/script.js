@@ -65,7 +65,7 @@ function addItemToPreview(item, type) {
 // Function to create the daily list as buttons
 function createDailyList() {
     const items = [
-        [MeatLoaf', 'entree' ],
+        ['MeatLoaf', 'entree' ],
         ['Rice', 'side' ],
         ['Mashed', 'side' ],
         ['Catfish', 'entree' ],
