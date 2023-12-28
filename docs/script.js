@@ -65,14 +65,15 @@ function addItemToPreview(item, type) {
 // Function to create the daily list as buttons
 function createDailyList() {
     const items = [
-        ['MeatLoaf', 'entree' ],
-        ['Rice', 'side' ],
+        ['Pork', 'entree' ],
+        ['Noodles', 'side' ],
         ['Mashed', 'side' ],
-        ['Catfish', 'entree' ],
-        ['Beets', 'side' ],
+        ['Fried Chix', 'entree' ],
+        ['Mashed', 'side' ],
         ['Chef Special', 'entree' ],
-        ['Squash Medley', 'side' ],
-        ['Wax Beans','entree' ]
+        ['Veg Du Jour', 'side' ],
+        ['Green Beans','entree' ],
+        ['Carrots','entree' ]
     ];
     // Clear existing buttons in both containers
     document.getElementById('entreeButtonContainer').innerHTML = '';
