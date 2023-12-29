@@ -19,14 +19,14 @@ function addSide() {
 function autofillTicket() {
     // Define the items and their types
     const items = [
-        { name: 'MeatLoaf', type: 'entree' },
-        { name: 'Rice', type: 'side' },
-        { name: 'Mashed', type: 'side' },
-        { name: 'Catfish', type: 'entree' },
-        { name: 'Beets', type: 'side' },
+        { name: 'Lasagna', type: 'entree' },
+        { name: 'Baked Sw Pot', type: 'side' },
+        { name: 'Brocc', type: 'side' },
+        { name: 'Mashed', type: 'entree' },
+        { name: 'Cauliflower', type: 'side' },
         { name: 'Chef Special', type: 'entree' },
-        { name: 'Squash Medley', type: 'side' },
-        { name: 'Wax Beans', type: 'entree' },
+        { name: 'Carrots', type: 'side' },
+        { name: 'Green Beans', type: 'entree' },
     ];
 
     // Loop through the items and add them to the preview
