@@ -65,13 +65,13 @@ function addItemToPreview(item, type) {
 // Function to create the daily list as buttons
 function createDailyList() {
     const items = [
-        ['Pork', 'entree' ],
-        ['Noodles', 'side' ],
-        ['Mashed', 'side' ],
-        ['Fried Chix', 'entree' ],
+        ['Lasagna', 'entree' ],
+        ['Baked Sw Pot', 'side' ],
+        ['Brocc', 'side' ],
+        ['Shrimp Scampi', 'entree' ],
         ['Mashed', 'side' ],
         ['Chef Special', 'entree' ],
-        ['Veg Du Jour', 'side' ],
+        ['Cauliflower', 'side' ],
         ['Green Beans','entree' ],
         ['Carrots','entree' ]
     ];
