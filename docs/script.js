@@ -72,8 +72,10 @@ function createDailyList() {
         ['Mashed', 'side' ],
         ['Chef Special', 'entree' ],
         ['Cauliflower', 'side' ],
-        ['Green Beans','entree' ],
-        ['Carrots','entree' ]
+        ['Green Beans','side' ],
+        ['Carrots','side' ],
+        ['French Fries','side' ],
+        ['Sw Pot Fries','side' ]
     ];
     // Clear existing buttons in both containers
     document.getElementById('entreeButtonContainer').innerHTML = '';
