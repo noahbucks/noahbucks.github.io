@@ -1,30 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket Preview</title>
-    <link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
-<body>
-    <div class="container">
-        <div class="top-half">
-            <input type="text" id="itemInput" placeholder="Enter item">
-            <button onclick="addEntree()">Add Entree</button>
-            <button onclick="addSide()">Add Side</button>
-            <div class="button-areas">
-                <div id="entreeButtonContainer" class="button-container"></div> <!-- Entree buttons -->
-                <div id="sideButtonContainer" class="button-container"></div> <!-- Side buttons -->
-            </div>
-            <button onclick="downloadTicket()">Download as JPG</button>
-			<button onclick="autofillTicket()">Autofill 🤫</button>
-        </div>
-        <div class="bottom-half">
-            <div id="ticketPreview" class="ticket-preview"></div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="music-sharing-on-phones">Music Sharing on Phones</h1>
+<h2 id="a.-spotify-web-api">1a. Spotify Web API</h2>
+<p>For the devices with Spotify</p>
+<p>**Login to Spotify API -&gt;</p>
+<h2 id="b.-apple-musickit">1b. Apple MusicKit</h2>
+<p>For the devices with Apple Music</p>
+<blockquote>
+<p><strong>MusicKit permite a los usuarios reproducir Apple Music y su biblioteca de música local desde tu app o sitio web.</strong> Cuando los usuarios dan permiso para acceder a su cuenta de Apple Music, pueden utilizar tu app o sitio web para crear listas de reproducción, añadir canciones a su biblioteca y reproducir cualquiera de los millones de canciones del catálogo de Apple Music. Si tu aplicación detecta que el usuario aún no es miembro de Apple Music, puedes ofrecerle una suscripción de prueba desde tu aplicación.</p>
+<p><em>Ingles</em></p>
+<p><strong>MusicKit lets users play Apple Music and their local music library from your app or website.</strong> When users provide permission to access their Apple Music account, they can use your app or website to create playlists, add songs to their library, and play any of the millions of songs in the Apple Music catalog. If your app detects that the user is not yet an Apple Music member, you can offer a trial membership from within your app.</p>
+</blockquote>
+<h2 id="httpsdeveloper.apple.commusickithttpsdeveloper.apple.comdocumentationmusickit"><a href="https://developer.apple.com/musickit/">https://developer.apple.com/musickit/</a><br>
+<a href="https://developer.apple.com/documentation/MusicKit/">https://developer.apple.com/documentation/MusicKit/</a></h2>
+<h4 id="applicationmusicplayer-httpsdeveloper.apple.comdocumentationmusickitapplicationmusicplayer">ApplicationMusicPlayer (<a href="https://developer.apple.com/documentation/musickit/applicationmusicplayer">https://developer.apple.com/documentation/musickit/applicationmusicplayer</a>)</h4>
+<ul>
+<li>
+<p>Isolated Playback: The ApplicationMusicPlayer creates a separate playback session that’s independent of what’s happening in the Music app. This means that if the user was listening to something in the Music app before opening your app, that playback state is preserved.</p>
+</li>
+<li>
+<p>No Interference: When your app uses ApplicationMusicPlayer to play music, it doesn’t interrupt or change what might be queued up or playing in the Music app. The user can return to the Music app later and find everything as they left it.</p>
+</li>
+<li>
+<p>Separate Queue: The ApplicationMusicPlayer maintains its own queue of songs, separate from the Music app’s queue. This allows your app to have its own playlist or sequence of songs without altering the user’s Music app queue.</p>
+</li>
+</ul>
+<hr>
+<h4 id="systemmusicplayer-httpsdeveloper.apple.comdocumentationmusickitsystemmusicplayer">SystemMusicPlayer (<a href="https://developer.apple.com/documentation/musickit/systemmusicplayer">https://developer.apple.com/documentation/musickit/systemmusicplayer</a>)</h4>
+<ul>
+<li>
+<p>Controls the main Music state: Affects the current playback and queue, when the device returns to play music it will play what has been queued or left off on from your application.</p>
+</li>
+<li>
+<p>Playing in the background: The SystemMusicPlayer allows you to control music playback without leaving your app. It behaves similarly to how music continues playing when you switch away from the Apple Music app. The music plays in the background, and your app can control it.</p>
+</li>
+<li>
+<p>Changing songs: You can change songs, adjust playback, and modify the queue all from within your app using the SystemMusicPlayer. There’s no need to switch to the Apple Music app to make these changes.</p>
+</li>
+<li>
+<p>Tracking the current playing song: You can monitor the currently playing song and other playback information directly through the SystemMusicPlayer’s properties and methods, all within your app.</p>
+</li>
+</ul>
+<h1 id="files">Files</h1>
+</div>
 </body>
+
 </html>
