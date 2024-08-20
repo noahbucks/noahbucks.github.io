@@ -36,6 +36,36 @@
 <p><strong>Add song(s) to queue:</strong><br>
 <a href="https://developer.spotify.com/documentation/web-api/reference/add-to-queue">https://developer.spotify.com/documentation/web-api/reference/add-to-queue</a></p>
 <hr>
+<h3 id="spotify-api-authentication-token">Spotify API Authentication Token</h3>
+<p>(<a href="https://developer.spotify.com/documentation/web-api/concepts/authorization">https://developer.spotify.com/documentation/web-api/concepts/authorization</a>)<br>
+This step is to log in and receive the proper token to send alongside your API calls. To change the music and check music playing status, it requires more authentication.</p>
+<p>First step is to create the app on the dashboard, so that you can get the secret id and client id. <a href="https://developer.spotify.com/documentation/web-api/concepts/apps">https://developer.spotify.com/documentation/web-api/concepts/apps</a></p>
+<hr>
+<p>Then you set up the flow for receiving the authentication and proper tokens.</p>
+<blockquote>
+<p>Spotify implements the <a href="https://datatracker.ietf.org/doc/html/rfc6749">OAuth 2.0</a> authorization framework</p>
+</blockquote>
+<blockquote>
+<p>The OAuth2 standard defines four grant types (or flows) to request and get an access token. Spotify implements the following ones:</p>
+</blockquote>
+<ul>
+<li><a href="https://developer.spotify.com/documentation/web-api/tutorials/code-flow">Authorization code</a></li>
+<li><a href="https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow">Authorization code with PKCE extension</a></li>
+<li><a href="https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow">Client credentials</a></li>
+<li><a href="https://developer.spotify.com/documentation/web-api/tutorials/implicit-flow">Implicit grant</a></li>
+</ul>
+<blockquote>
+<p>Choosing one flow over the rest depends on the application you are building:</p>
+</blockquote>
+<ul>
+<li>
+<p>If you are developing a long-running application (e.g. web app running on the server) in which the user grants permission only once, and the client secret can be safely stored, then the <a href="https://developer.spotify.com/documentation/web-api/tutorials/code-flow">authorization code</a> is the recommended choice.</p>
+</li>
+<li>
+<p>In scenarios where storing the client secret is not safe (e.g. desktop, mobile apps or JavaScript web apps running in the browser), you can use the <a href="https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow">authorization code with PKCE</a>, as it provides protection against attacks where the authorization code may be intercepted.</p>
+</li>
+</ul>
+<hr>
 <h2 id="b.-apple-musickit">1b. Apple MusicKit</h2>
 <p>For the devices with Apple Music</p>
 <blockquote>
@@ -73,7 +103,6 @@
 <p>Tracking the current playing song: You can monitor the currently playing song and other playback information directly through the SystemMusicPlayer’s properties and methods, all within your app.</p>
 </li>
 </ul>
-<h1 id="files">Files</h1>
 </div>
 </body>
 
