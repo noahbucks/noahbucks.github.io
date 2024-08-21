@@ -103,6 +103,76 @@ This step is to log in and receive the proper token to send alongside your API c
 <p>Tracking the current playing song: You can monitor the currently playing song and other playback information directly through the SystemMusicPlayer’s properties and methods, all within your app.</p>
 </li>
 </ul>
+<hr>
+<h4 id="add-the-musickit-framework-to-your-project">Add the MusicKit framework to your project:</h4>
+<ul>
+<li>In Xcode, select your project in the navigator.</li>
+<li>Select your target and go to the “Signing &amp; Capabilities” tab.</li>
+<li>Click the “+” button and add “Music” capability.</li>
+</ul>
+<hr>
+<h4 id="authorization-for-the-music-control">Authorization for the music control:</h4>
+<pre class=" language-swift"><code class="prism  language-swift"><span class="token keyword">import</span> <span class="token builtin">MusicKit</span>
+
+<span class="token keyword">func</span> <span class="token function">requestMusicAuthorization</span><span class="token punctuation">(</span><span class="token punctuation">)</span> async <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> status <span class="token operator">=</span> await <span class="token builtin">MusicAuthorization</span><span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">switch</span> status <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token punctuation">.</span>authorized<span class="token punctuation">:</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Music authorization granted"</span><span class="token punctuation">)</span>
+    <span class="token keyword">case</span> <span class="token punctuation">.</span>denied<span class="token punctuation">,</span> <span class="token punctuation">.</span>restricted<span class="token punctuation">:</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Music authorization denied or restricted"</span><span class="token punctuation">)</span>
+    <span class="token keyword">case</span> <span class="token punctuation">.</span>notDetermined<span class="token punctuation">:</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Music authorization not determined"</span><span class="token punctuation">)</span>
+    @unknown <span class="token keyword">default</span><span class="token punctuation">:</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Unknown authorization status"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Run when the app starts</span>
+<span class="token builtin">Task</span>  <span class="token punctuation">{</span> await  <span class="token function">requestMusicAuthorization</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h4 id="changing-music-on-a-device-function-example">Changing music on a device, function example:</h4>
+<pre class=" language-swift"><code class="prism  language-swift"><span class="token keyword">let</span> player <span class="token operator">=</span>  <span class="token builtin">ApplicationMusicPlayer</span><span class="token punctuation">.</span>shared
+
+<span class="token keyword">func</span> <span class="token function">changeMusicToX</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">Task</span> <span class="token punctuation">{</span>
+        <span class="token keyword">do</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Search for a specific song or playlist</span>
+            <span class="token keyword">let</span> searchRequest <span class="token operator">=</span> <span class="token function">MusicCatalogSearchRequest</span><span class="token punctuation">(</span>term<span class="token punctuation">:</span> <span class="token string">"Your desired song or playlist"</span><span class="token punctuation">,</span> types<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token builtin">Song</span><span class="token punctuation">.</span><span class="token keyword">self</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">let</span> searchResponse <span class="token operator">=</span> <span class="token keyword">try</span> await searchRequest<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            
+            <span class="token keyword">if</span> <span class="token keyword">let</span> song <span class="token operator">=</span> searchResponse<span class="token punctuation">.</span>songs<span class="token punctuation">.</span><span class="token builtin">first</span> <span class="token punctuation">{</span>
+                <span class="token comment">// Play the song</span>
+                <span class="token keyword">try</span> await player<span class="token punctuation">.</span>queue <span class="token operator">=</span> <span class="token punctuation">[</span>song<span class="token punctuation">]</span>
+                <span class="token keyword">try</span> await player<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Song not found"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">{</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Error changing music: <span class="token interpolation"><span class="token delimiter variable">\(</span>error<span class="token delimiter variable">)</span></span>"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h4 id="observing-playback-state">Observing playback state:</h4>
+<p><em>player.state</em></p>
+<pre class=" language-swift"><code class="prism  language-swift"><span class="token keyword">func</span> <span class="token function">observePlaybackState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    player<span class="token punctuation">.</span>state<span class="token punctuation">.</span>forEach <span class="token punctuation">{</span> state <span class="token keyword">in</span>
+        <span class="token keyword">switch</span> state <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token punctuation">.</span>playing<span class="token punctuation">:</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Music is playing"</span><span class="token punctuation">)</span>
+        <span class="token keyword">case</span> <span class="token punctuation">.</span>paused<span class="token punctuation">:</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Music is paused"</span><span class="token punctuation">)</span>
+        <span class="token keyword">case</span> <span class="token punctuation">.</span>stopped<span class="token punctuation">:</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Music is stopped"</span><span class="token punctuation">)</span>
+        @unknown <span class="token keyword">default</span><span class="token punctuation">:</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Unknown playback state"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 </div>
 </body>
 
